@@ -23,7 +23,7 @@
 //#define FC2_UART_CLK_FREQ CLOCK_GetFlexCommClkFreq(0U)
 
 #define FC2_UART_CLK_FREQ (12000000U)
-#define FC2_SIZE_FRAME   16U // Size
+#define FC2_SIZE_FRAME   14U // Size
 
 /*******************************************************************************
  * Prototypes
@@ -136,14 +136,13 @@ int main(void)
 	 */
 	usart_config_t config;
 	USART_GetDefaultConfig(&config);
-	config.baudRate_Bps = 9600;
+	config.baudRate_Bps = 115200;
 //	//config.baudRate_Bps = 1000000;
 	config.enableTx     = true;
 //	config.enableRx     = true;
 //	config.stopBitCount = kUSART_OneStopBit;
 //	config.bitCountPerChar = kUSART_8BitsPerChar;
 	USART_Init(FC2_UART, &config, FC2_UART_CLK_FREQ);
-
 
 //    config->baudRate_Bps              = 115200U;
 //    config->parityMode                = kUSART_ParityDisabled;
@@ -161,22 +160,20 @@ int main(void)
 //    config->enableHardwareFlowControl = false;
 //
 	// Example code ascii : HELLO BAPTISTE
-	g_txBuffer[0] = 0x02;	// Header 1
-	g_txBuffer[1] = 0x48;	// Header 1
-	g_txBuffer[2] = 0x45;	// Header 2
-	g_txBuffer[3] = 0xAC;	// Header 3
-	g_txBuffer[4] = 0xAC;	// Header 4
-	g_txBuffer[5] = 0x4F;	// ID
-	g_txBuffer[6] = 0x60;	// Length 1
-	g_txBuffer[7] = 0x42;	// Length 2
-	g_txBuffer[8] = 0x41;	// Instruction => Write ici
-	g_txBuffer[9] = 0x50;	// Paramètre 1 : led
-	g_txBuffer[10] = 0x54;	// Paramètre 2 :
-	g_txBuffer[11] = 0x49;	// Paramètre 3 : Addr
-	g_txBuffer[12] = 0x53;	// Paramètre 1 : led
-	g_txBuffer[13] = 0x54;	// Paramètre 2 :
-	g_txBuffer[14] = 0x45;	// Paramètre 3 : Addr
-	g_txBuffer[15] = 0x03;	// Header 1
+	g_txBuffer[0] = 0x48;	// H
+	g_txBuffer[1] = 0x45;	// E
+	g_txBuffer[2] = 0x4c;	// L
+	g_txBuffer[3] = 0x4c;	// L
+	g_txBuffer[4] = 0x4F;	// O
+	g_txBuffer[5] = 0x20;	// Space
+	g_txBuffer[6] = 0x42;	// B
+	g_txBuffer[7] = 0x41;	// A
+	g_txBuffer[8] = 0x50;	// P
+	g_txBuffer[9] = 0x54;	// T
+	g_txBuffer[10] = 0x49;	// I
+	g_txBuffer[11] = 0x53;	// S
+	g_txBuffer[12] = 0x54;	// T
+	g_txBuffer[13] = 0x45;	// E
 
 	//  Test XL320
 	//	g_txBuffer[0] = 0xFF;	// Header 1
